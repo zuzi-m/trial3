@@ -1,0 +1,45 @@
+<div class="container">
+  <h2>Add Photovoltaic Form</h2>
+
+  <div>
+    <label>Peak Power</label><br>
+    {{input
+      id="peakPower"
+      name="peakPower"
+      type="number"
+      value=model.peakPower
+      min=0
+    }}
+  </div>
+  <div>
+    <label>Orientation</label><br>
+    <select onchange={{action "selectOrientation" value="target.value"}}>
+      {{#each orientations as |orientation|}}
+        <option value={{orientation}} selected={{eq model.orientation orientation}}>{{orientation-formatter orientation}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div>
+    <label>Elevation</label><br>
+    <select
+      onchange={{action "selectElevation" value="target.value"}}
+      disabled={{elevationDisabled}}
+    >
+      {{#each elevations as |elevation|}}
+        <option value={{elevation}} selected={{eq model.elevation elevation}}>{{elevation-formatter elevation}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div>
+    <label>Overshading</label><br>
+    <select onchange={{action "selectOvershading" value="target.value"}}>
+      {{#each overshadings as |overshading|}}
+        <option value={{overshading}} selected={{eq model.overshading overshading}}>{{overshading-formatter overshading}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div>
+    <button {{action "createPhotovoltaic"}} disabled={{saveDisabled}}>Add Photovoltaic</button>
+  </div>
+</div>
